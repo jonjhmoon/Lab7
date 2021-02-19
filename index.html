@@ -128,10 +128,10 @@
         let website_url = document.getElementById("endpoint").value;
         document.getElementById("recordForm").style.display="block";
 
-        // let data = {
-        //   author: document.getElementById("author").value,
-        //   title: document.getElementById("title").value
-        // }
+        let data = {
+          author: document.getElementById("author").value,
+          title: document.getElementById("title").value,
+        }
 
         // var request = new Request(website_url, {
         //   method: 'POST',
@@ -141,18 +141,19 @@
         //   } 
         // });
 
-        // fetch(website_url)
-        //   .then(
-        //     function(response){
-        //       if(response.status == 200){ //successful in fetching
-        //         return response.json();
-        //       }
-        //     }
-        //   )
-        //   .then((result) => (output.innerHTML = JSON.stringify(data)))
-        //   .catch(function(error) {
-        //     console.log(error);
-        //   });
+        fetch(website_url, {
+          method: 'POST',
+          body: data
+        })
+          .then(response =>{
+          if(response.status == 200){ //successful in fetching
+            return response.json();
+          }
+        })
+        .then((result) => (output.innerHTML = JSON.stringify(data)))
+        .catch(function(error) {
+          console.log(error);
+        });
       }
 
       // This function should use fetch to update one existing entry in the given endpoint.
