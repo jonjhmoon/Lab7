@@ -84,13 +84,12 @@
       // The main difference from fetchOne() will be the URL you request from; check
       // the writeup to view the URL pattern for fetch one and fetch all
       function fetchAll() {
-        // TODO
         let website_url = document.getElementById("endpoint").value;
 
         fetch(website_url)
           .then(
             function(response){
-              if(response.status == 200){ //successful in fetching
+              if(response.status == 200){
                 return response.json();
               }
             }
@@ -106,15 +105,55 @@
       // The main difference from fetchAll() will be the URL you request from; check
       // the writeup to view the URL pattern for fetch one and fetch all
       function fetchOne() {
-        // TODO
-      }
+        let website_url = document.getElementById("endpoint").value;
+        let result = window.prompt("Enter record id: ");
 
+        fetch(website_url + "/" + result)
+          .then(
+            function(response){
+              if(response.status == 200){
+                return response.json();
+              }
+            }
+          )
+          .then((data) => (output.innerHTML = JSON.stringify(data)))
+          .catch(function(error) {
+            console.log(error);
+          });
+      }
+      
       // This function should use fetch to create one entry in the given endpoint.
       // From the 4 CRUD actions, this is the CREATE action, and uses the POST http method.
       // The main difference from updateRecord() will be the URL you send data to; check
       // the writeup to view the URL pattern for create and update
       function createRecord() {
-        // TODO
+        let website_url = document.getElementById("endpoint").value;
+        let result = document.getElementById("recordForm").style.display="block";
+
+        let data = {
+          author: document.getElementById("author").value,
+          title: document.getElementById("title").value,
+          id: document.getElementById("recordID").value
+        }
+
+        var request = new Request(website_url, {
+          method: 'POST',
+          body: data,
+          headers: new Headers()
+        });
+
+        fetch(website_url)
+          .then(
+            function(response){
+              if(response.status == 200){
+                return response.json();
+              }
+            }
+          )
+          .then((result) => (output.innerHTML = JSON.stringify(data)))
+          .catch(function(error) {
+            console.log(error);
+          });
       }
 
       // This function should use fetch to update one existing entry in the given endpoint.
@@ -131,7 +170,21 @@
       // request; check the writeup to view the URL pattern for get one and delete. THERE IS NO 
       // delete all, only delete one.
       function deleteRecord() {
-        // TODO
+        let website_url = document.getElementById("endpoint").value;
+        let result = window.prompt("Enter record id: ");
+
+        fetch(website_url + "/" + result)
+          .then(
+            function(response){
+              if(response.status == 200){
+                return response.json();
+              }
+            }
+          )
+          .then((data) => (output.innerHTML = JSON.stringify(data)))
+          .catch(function(error) {
+            console.log(error);
+          });
       }
 
       window.addEventListener('DOMContentLoaded', () => {
