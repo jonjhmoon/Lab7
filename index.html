@@ -85,6 +85,20 @@
       // the writeup to view the URL pattern for fetch one and fetch all
       function fetchAll() {
         // TODO
+        let website_url = document.getElementById("endpoint").value;
+
+        fetch(website_url)
+          .then(
+            function(response){
+              if(response.status == 200){ //successful in fetching
+                return response.json();
+              }
+            }
+          )
+          .then((data) => (output.innerHTML = JSON.stringify(data)))
+          .catch(function(error) {
+            console.log(error);
+          });
       }
 
       // This function should fetch one entry from the given endpoint.
