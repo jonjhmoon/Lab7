@@ -85,7 +85,6 @@
       // the writeup to view the URL pattern for fetch one and fetch all
       function fetchAll() {
         let website_url = document.getElementById("endpoint").value;
-
         fetch(website_url)
           .then(
             function(response){
@@ -106,7 +105,24 @@
       // the writeup to view the URL pattern for fetch one and fetch all
       function fetchOne() {
         let website_url = document.getElementById("endpoint").value;
+<<<<<<< HEAD
         let result = window.prompt("Enter record id: ");
+=======
+        let result = window.prompt("Enter record id");
+        fetch(website_url + "/" + result)
+          .then(
+            function(response){
+              if(response.status == 200){ //successful in fetching
+                return response.json();
+              }
+            }
+          )
+          .then((data) => (output.innerHTML = JSON.stringify(data)))
+          .catch(function(error) {
+            console.log(error);
+          });
+      }
+>>>>>>> 40512d5258ff032702dd935bac05697e72f81914
 
         fetch(website_url + "/" + result)
           .then(
@@ -128,6 +144,7 @@
       // the writeup to view the URL pattern for create and update
       function createRecord() {
         let website_url = document.getElementById("endpoint").value;
+<<<<<<< HEAD
         let result = document.getElementById("recordForm").style.display="block";
 
         let data = {
@@ -154,6 +171,35 @@
           .catch(function(error) {
             console.log(error);
           });
+=======
+        document.getElementById("recordForm").style.display="block";
+
+        // let data = {
+        //   author: document.getElementById("author").value,
+        //   title: document.getElementById("title").value
+        // }
+
+        // var request = new Request(website_url, {
+        //   method: 'POST',
+        //   body: data,
+        //   headers: { 
+        //     'Content-type': 'application/json'
+        //   } 
+        // });
+
+        // fetch(website_url)
+        //   .then(
+        //     function(response){
+        //       if(response.status == 200){ //successful in fetching
+        //         return response.json();
+        //       }
+        //     }
+        //   )
+        //   .then((result) => (output.innerHTML = JSON.stringify(data)))
+        //   .catch(function(error) {
+        //     console.log(error);
+        //   });
+>>>>>>> 40512d5258ff032702dd935bac05697e72f81914
       }
 
       // This function should use fetch to update one existing entry in the given endpoint.
@@ -171,6 +217,7 @@
       // delete all, only delete one.
       function deleteRecord() {
         let website_url = document.getElementById("endpoint").value;
+<<<<<<< HEAD
         let result = window.prompt("Enter record id: ");
 
         fetch(website_url + "/" + result)
@@ -185,7 +232,22 @@
           .catch(function(error) {
             console.log(error);
           });
+=======
+        let result = window.prompt("Enter record id");
+        fetch(website_url + "/" + result, {
+          method: 'delete'
+        })
+        .then(response =>{
+          if(response.status == 200){ //successful in fetching
+            return response.json();
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+>>>>>>> 40512d5258ff032702dd935bac05697e72f81914
       }
+
 
       window.addEventListener('DOMContentLoaded', () => {
         // Action Form Event Listener

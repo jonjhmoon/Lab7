@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "posts": [
     {
       "id": 1,
@@ -58,6 +59,10 @@
       "postId": 1
     }
   ],
+=======
+  "posts": [],
+  "comments": [],
+>>>>>>> 40512d5258ff032702dd935bac05697e72f81914
   "profile": {
     "name": "typicode"
   }
