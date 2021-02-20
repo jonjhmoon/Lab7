@@ -133,13 +133,13 @@
           title: document.getElementById("title").value,
         }
 
-        // var request = new Request(website_url, {
-        //   method: 'POST',
-        //   body: data,
-        //   headers: { 
-        //     'Content-type': 'application/json'
-        //   } 
-        // });
+        var request = new Request(website_url, {
+          method: 'POST',
+          body: data,
+          headers: { 
+            'Content-type': 'application/json'
+          } 
+        });
 
         fetch(website_url, {
           method: 'POST',
