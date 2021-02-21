@@ -126,34 +126,32 @@
       // the writeup to view the URL pattern for create and update
       function createRecord() {
         let website_url = document.getElementById("endpoint").value;
-        document.getElementById("recordForm").style.display="block";
+        console.log(document.getElementById("recordForm").style.display);
 
-        let data = {
-          author: document.getElementById("author").value,
-          title: document.getElementById("title").value,
-        }
-
-        var request = new Request(website_url, {
-          method: 'POST',
-          body: data,
-          headers: { 
-            'Content-type': 'application/json'
-          } 
-        });
-
-        fetch(website_url, {
-          method: 'POST',
-          body: data
-        })
-          .then(response =>{
-          if(response.status == 200){ //successful in fetching
-            return response.json();
+        if (document.getElementById("recordForm").style.display == "inline") {
+          document.getElementById("recordForm").style.display="inline";
+          document.getElementById("recordID").style.display="none";
+          let data = {
+            author: document.getElementById("author").value,
+            title: document.getElementById("title").value,
           }
-        })
-        .then((result) => (output.innerHTML = JSON.stringify(data)))
-        .catch(function(error) {
-          console.log(error);
-        });
+
+          fetch(website_url, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+
+          document.getElementById("recordForm").style.display = "none";
+          document.getElementById("recordID").style.display = "none";
+          return;
+        }
+      
+        document.getElementById("recordForm").style.display="inline";
+        document.getElementById("recordID").style.display="none";
       }
 
       // This function should use fetch to update one existing entry in the given endpoint.
