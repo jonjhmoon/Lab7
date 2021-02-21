@@ -144,6 +144,10 @@
             },
             body: JSON.stringify(data)
           })
+          .then((data) => (output.innerHTML = JSON.stringify(data)))
+          .catch(function(error) {
+            console.log(error);
+          });
 
           document.getElementById("recordForm").style.display = "none";
           return;
@@ -159,26 +163,25 @@
       function updateRecord() {
         let website_url = document.getElementById("endpoint").value;
         let result = window.prompt("Enter record id");
+        
+        document.getElementById("recordForm").style.display="inline";
+        document.getElementById("recordID").style.display="inline";
 
-        fetch(website_url + "/" + result)
-          document.getElementById("recordForm").style.display="inline";
-          document.getElementById("recordID").style.display="inline";
-            
-          let data = {
+        let data = {
             author: document.getElementById("author").value,
             title: document.getElementById("title").value,
-            id: document.getElementById("id")
-          }
+            id: document.getElementById("recordID")
+        }
 
-          fetch(website_url + "/" + result, {
-            method: 'PUT',
+        fetch(website_url + "/" + result, {
+          method: 'PUT',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
           })
-
+          
           .then(
             function(response){
               if(response.status == 200){ //successful in fetching
